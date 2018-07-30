@@ -14,8 +14,8 @@ import './Preloader.css';
 import Loader from '../SvgComponents/Loader/Loader';
 
 class Preloader extends React.PureComponent {
-  async componentDidMount() {
-    await Promise.all([this.setTimer(), this.setLoader()]);
+  componentDidMount() {
+    // await Promise.all([this.setTimer(), this.setLoader()]);
     this.setDone();
   }
 

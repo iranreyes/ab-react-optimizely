@@ -3,11 +3,9 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import debounce from 'lodash.debounce';
-import { Transition } from 'react-transition-group';
 
 import Pages from '../../components/Pages/Pages';
 import RotateScreen from '../../components/Rotate/Rotate';
-import Preloader from '../../components/Preloader/Preloader';
 import MainTopNav from '../MainTopNav/MainTopNav';
 import HamburgerMenu from '../HamburgerMenu/HamburgerMenu';
 import Footer from '../Footer/Footer';
@@ -51,18 +49,11 @@ class App extends React.PureComponent {
   render() {
     return (
       <Fragment>
-        {this.props.ready && (
-          <Fragment>
-            <MainTopNav />
-            {!this.props.layout.large && <HamburgerMenu />}
-            <Pages />
-            <Footer />
-          </Fragment>
-        )}
+        <MainTopNav />
+        {!this.props.layout.large && <HamburgerMenu />}
+        <Pages />
+        <Footer />
         {detect.isMobile && <RotateScreen />}
-        <Transition in={!this.props.ready} timeout={0}>
-          {state => state !== 'exited' && <Preloader transitionState={state} />}
-        </Transition>
       </Fragment>
     );
   }
